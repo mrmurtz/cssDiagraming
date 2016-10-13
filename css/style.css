@@ -1,25 +1,5 @@
-.container {
-  border: solid 2px red;
-  height: auto;
-  width: 100%;
-  overflow: auto;
-}
-
-
-.box {
-  padding-top: 10px;
-  text-align: center;
-  height: 250px;
-  background-color: #ffe;
+#row {
+  height: 600px;
+  width: 60%;
   border: solid 2px black;
-}
-
-.small-box {
-  height: 50px;
-  border: solid 2px black;
-  text-align: center;
-}
-
-.props-table {
-  margin-left: 10px;
 }
