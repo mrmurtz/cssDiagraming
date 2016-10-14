@@ -8,12 +8,10 @@ var UseThis = {
                 			"tableName": "photo",
                 			"columns": {
                 				"1": {
-                					"name": "first col name",
-                					"type": "string"
+                					"label": "ID Image",
                 				},
                 				"2": {
-                					"name": "second col name",
-                					"type": "string"
+                					"label": "Caption",
                 				}
                 			}
                 		},
@@ -21,44 +19,40 @@ var UseThis = {
                       "tableName": "tag",
                       "columns": {
                         "1": {
-                          "name": "first col name",
-                          "type": "string"
+                          "label": "ID",
                         },
                         "2": {
-                          "name": "second col name",
-                          "type": "string"
+                          "label": "Genre",
                         }
                       }
                     }
                 	}
                 };
 
-  // COLUMN FUNCTIONS
-  function columnCreator(json){
-    var noOfColumns = 3;
-    var outputs = [];
-    for (var i = 1; i < noOfColumns; i++) {
-      var columnData = json.table[i].columns[i];
-      outputs.push(columnData);
-    }
-    return outputs;
+function outputGenerator(json, tableNumber, columnNumber) {
+    for (var label in json.table[tableNumber].columns[columnNumber]) {
+      var result = json.table[tableNumber].columns[columnNumber];
+      return result;
   }
-
+}
 
   function OperatorCreator(json){
+    // HARD CODED
     var tableLength = 2;
-    var all = [];
-    var columnsArray = columnCreator(json);
-    var column1 = columnsArray[0];
-    var column2 = columnsArray[1];
+    var operator = [];
+    // HARD CODED
     for (var i = 1; i < tableLength+1; i++) {
       var currentTable = json.table[i];
       var top = 20;
       var left = i*200;
       var title = currentTable.tableName;
       var output = new Operator(top, left, title);
-      output.operator.properties.outputs = columnsArray[i - 1];
-      all.push(output);
+      // HARD CODED
+      for (var x = 1; x < 3; x++) {
+          var label = outputGenerator(json, i, x);
+          output.operator.properties.outputs["output_" + x] = label;
+      }
+      operator.push(output);
     }
     return all;
   }
@@ -84,8 +78,6 @@ function Operator(top, left, title){
 function convertToData(array) {
   var data = {
     operators: {
-    },
-    links: {
     }
   };
   data.operators["operator1"] = array[0].operator;
@@ -97,33 +89,8 @@ function convertToData(array) {
 $(document).ready(function() {
   var array = OperatorCreator(UseThis);
   var newData = convertToData(array);
-  console.log(newData);
-    $('#row').flowchart({
-      data: newData
-    });
-  });
-
-
-
-// BELOW ARE DIFFERENT WAYS OF MAKING THE AMOUNT OF MODELS CUSTOMIZABLE
-
-  // var count = Object.keys(UseThis.table).length;
-  // var colCount = Object.keys(UseThis.table["1"].columns).length;
-
-
-
-// var tableNames = [];
-// tableNames.push(UserSelection.tableName1);
-//  if (UserSelection.tableName2 !== null) {
-//    tableNames.push(UserSelection.tableName2);
-//  }
-//  if (UserSelection.tableName3 !== null) {
-//    tableNames.push(UserSelection.tableName3);
-//  }
-//  if (UserSelection.tableName4 !== null) {
-//    tableNames.push(UserSelection.tableName4);
-//  }
-//
-// var arrayLength = tableNames.filter( String );
-// var length = arrayLength.length;
-//
+   // Apply the plugin on a standard, empty div...
+   $('.row').flowchart({
+     data: newData
+   });
+ });

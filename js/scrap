@@ -1,0 +1,42 @@
+// COLUMN FUNCTIONS
+function columnCreator(json){
+  var noOfTables = 2;
+  var noOfColumns = 2;
+  var outputs = [];
+          // var result = (i, json.table[i].columns);
+      // return result
+    }
+    // var colResult = [];
+    // for (var x = 1; x < noOfColumns + 1; x++) {
+    //   var column = json.table[i].columns[x];
+    //   colResult.push(column);
+    // }
+    // outputs.push(colResult);
+    //
+  }
+
+  return outputs;
+}
+
+// BELOW ARE DIFFERENT WAYS OF MAKING THE AMOUNT OF MODELS CUSTOMIZABLE
+
+  // var count = Object.keys(UseThis.table).length;
+  // var colCount = Object.keys(UseThis.table["1"].columns).length;
+
+
+
+// var tableNames = [];
+// tableNames.push(UserSelection.tableName1);
+//  if (UserSelection.tableName2 !== null) {
+//    tableNames.push(UserSelection.tableName2);
+//  }
+//  if (UserSelection.tableName3 !== null) {
+//    tableNames.push(UserSelection.tableName3);
+//  }
+//  if (UserSelection.tableName4 !== null) {
+//    tableNames.push(UserSelection.tableName4);
+//  }
+//
+// var arrayLength = tableNames.filter( String );
+// var length = arrayLength.length;
+//
